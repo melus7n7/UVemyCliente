@@ -27,7 +27,7 @@ namespace UVemyCliente
             InitializeComponent();
             //_ = EnviarPeticionGetAsync();
             //_ = EnviarPeticionPutAsync();
-            _ = EnviarPeticionPutYGetAlMismoTiempoAsync();
+            //_ = EnviarPeticionPutYGetAlMismoTiempoAsync();
         }
 
         public async Task EnviarPeticionGetAsync()
@@ -131,6 +131,7 @@ namespace UVemyCliente
                     BaseAddress = new Uri(baseUri)
                 };
             }
+
             public async Task<HttpResponseMessage> SendRequestAsync(HttpMethod method, string relativeUri, HttpContent content = null)
             {
                 return await _cliente.SendAsync(new HttpRequestMessage(method, relativeUri)

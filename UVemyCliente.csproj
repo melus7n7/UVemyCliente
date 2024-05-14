@@ -92,6 +92,7 @@
     <Compile Include="Utilidades\ExitoMensaje.xaml.cs">
       <DependentUpon>ExitoMensaje.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utilidades\SingletonUsuario.cs" />
     <Compile Include="Vistas\FormularioClasePagina.xaml.cs">
       <DependentUpon>FormularioClasePagina.xaml</DependentUpon>
     </Compile>

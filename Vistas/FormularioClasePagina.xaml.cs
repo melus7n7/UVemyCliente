@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -61,9 +63,12 @@ namespace UVemyCliente.Vistas
                 IdCurso = 1
             };
 
-            int respuesta = await ClaseClient.GuardarClase(clase);
+            var json = JsonSerializer.Serialize(clase);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage respuestaHttp = await APIConexion.EnviarRequestAsync(HttpMethod.Post, "clases", content);
+            int codigoRespuesta = (int)respuestaHttp.StatusCode;
 
-            if (respuesta >= 500)
+            if (codigoRespuesta >= 500)
             {
                 ErrorMensaje error = new ErrorMensaje();
                 error.Show();

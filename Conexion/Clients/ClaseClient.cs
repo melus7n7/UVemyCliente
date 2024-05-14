@@ -14,11 +14,11 @@ namespace UVemyCliente.Conexion
         private static string URL_PATH = "clases";
         public static async Task<int> GuardarClase(ClaseDTO clase)
         {
-            int codigoRespuesta;
+            int codigoRespuesta = 500;
             var json = JsonSerializer.Serialize(clase);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            try
+            /*try
             {
                 using (HttpResponseMessage respuesta = await APIConexion.ObtenerClient().PostAsync(URL_PATH, content))
                 {
@@ -30,7 +30,7 @@ namespace UVemyCliente.Conexion
                 Console.WriteLine(ex);
                 codigoRespuesta = 500;
             }
-
+            */
             return codigoRespuesta;
         }
 
