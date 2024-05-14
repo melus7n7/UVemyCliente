@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Grpc.Net.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -54,7 +56,7 @@ namespace UVemyCliente.Vistas
 
         private async Task GuardarClaseAsync()
         {
-            ClaseDTO clase = new ClaseDTO
+            /*ClaseDTO clase = new ClaseDTO
             {
                 Nombre = "Clase Prueba",
                 Descripcion = "Descripcion",
@@ -72,7 +74,32 @@ namespace UVemyCliente.Vistas
             {
                 ExitoMensaje exito = new ExitoMensaje();
                 exito.Show();
+            }*/
+            try
+            {
+                var channel = GrpcChannel.ForAddress("http://localhost:3001");
+                
+                var cliente = new VideoService.VideoServiceClient(channel);
+                var peticion = new EnviarVideoPeticion { Datos = "" };
+
+                var respuesta = cliente.enviarVideoDesdeCliente(peticion);
+
+
+                
+                Console.WriteLine("\nRecepción de datos correcta. " + respuesta.Respuesta);
+
             }
+            catch(Exception ex)
+            {
+                await Console.Out.WriteLineAsync(ex.StackTrace);
+                await Console.Out.WriteLineAsync(ex.Message);
+
+
+            }
+
+            
+
+
         }
     }
 }
